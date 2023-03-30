@@ -1,107 +1,113 @@
-# This repo is no longer maintained. Consider using `npm init vite` and selecting the `svelte` option or  if you want a full-fledged app framework and don't mind using pre-1.0 software  use [SvelteKit](https://kit.svelte.dev), the official application framework for Svelte.
+*To Run this application you will need both Nodejs and FLask(python) and Requests(python) installed onto your device *
+
+*To Install Nodejs please go to https://nodejs.org/en/download/ and to install Flask please go to https://flask.palletsprojects.com/en/2.0.x/installation/ and to install Requests please go to https://pypi.org/project/requests/ *
+
+*To run code uncompress the node modules folder*
+
+# Svelte Arduino Dashboard(Svelte + Flask)
 
 ---
+This project is a web application using both Svelte(JS) and Flask(Python) to create my own customizable online dashboard GUI to control my Arduino and IOT projects. I created this project to be a central control system for all my current and future projects. Currently I have 3 projects being controlled thru this project, My RFID Door lock, my automated light project, and my arduino cloud messenger project.
 
-# svelte app
+<img width="1680" alt="Screenshot 2023-03-30 at 5 41 36 PM" src="https://user-images.githubusercontent.com/58381410/228971400-93d48943-a724-479c-a09c-73b022cb5ee5.png">
+<img width="1680" alt="Screenshot 2023-03-30 at 5 41 44 PM" src="https://user-images.githubusercontent.com/58381410/228971404-e6137194-c49f-4776-a2cf-38a32aa4cba8.png">
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+*Note that you will need to have [Node.js], [Flask(Python)] and [Requests(Python)] installed. *
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
+## How It Works
+---
+The user clicks on the buttons and switches, and each button and swithc is linked to an event. Whenever an event is triggered the corresponding function makes a call to the backend, based on the function that makes the call the backend will then send a publish request to arduino to then modify and update the new property values.
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+Main code is in src/App.svelte
+
+The server/api are in server.py 
 
 
 ## Get started
+---
+These installation an Deployment Instructions are meant for MAC OS * Download the Project
 
-Install the dependencies...
 
 ```bash
-cd svelte-app
-npm install
+git clone https://github.com/humzah-77/Arduino-Dashboard-Svelte-.git
+cd Arduino-Dashboard-Svelte
 ```
 
-...then start [Rollup](https://rollupjs.org):
+# How to Run
+---
+## To run with development server
+---
+first set up the environment
+```bash
+ export FLASK_APP=server.py
+ export FLASK_ENV=development
+ flask run
+```
+then start the server
 
 ```bash
-npm run dev
+python server.py
 ```
-
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
+in a new terminal tab navigate to the public folder
 ```bash
 cd public
-vercel deploy --name my-project
 ```
+next install dependencies
+```bash
+npm install
+```
+and finally deploy the front end
+```bash
+npm run build 
+```
+The application is now running...
 
-### With [surge](https://surge.sh/)
+Navigate to localhost:5000.
 
-Install `surge` if you haven't already:
+<img width="580" alt="137675173-494d0bf9-eb99-4ca1-836e-4debf244a69a" src="https://user-images.githubusercontent.com/58381410/228972496-1c98c49c-e259-4cba-9dca-c05d19a5f97b.png">
+
+
+## To run with production server
+---
+first set up the environment
+```bash
+ export FLASK_APP=server.py
+ export FLASK_ENV=production
+ flask run
+```
+then start the server
 
 ```bash
-npm install -g surge
+python server.py
 ```
-
-Then, from within your project folder:
-
+in a new terminal tab navigate to the public folder
 ```bash
-npm run build
-surge public my-project.surge.sh
+cd public
 ```
+next install dependencies
+```bash
+npm install
+```
+and finally deploy the front end
+```bash
+npm run build 
+```
+The application is now running...
+
+The application is now running...
+
+Navigate to localhost:8080.
+
+or
+
+Navigate to 0.0.0.0:8080.
+
+<img width="333" alt="137677670-0385d41f-1c31-42b0-aa62-d538d2197bca" src="https://user-images.githubusercontent.com/58381410/228972698-58698335-31ee-4227-be47-5b247d629778.png">
+
+
+
+
+
+
+
