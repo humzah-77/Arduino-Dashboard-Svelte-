@@ -29,8 +29,8 @@ oauth = OAuth2Session(client=oauth_client)
 # client_secret with a fresh access token
 token = oauth.fetch_token(
     token_url=token_url,
-    client_id="LLKshCTTfKtffDM8twWxY7D3vPrVD6rW",
-	client_secret="PtH4AsDJc1wZHEBcufGWWKMEvIuXM6UAoBbBI5INBdonDxuw8U2g1TcPJ1B8dqzt",
+    client_id="Clientid",
+	client_secret="CLientsecrett",
     include_client_id=True,
     audience="https://api2.arduino.cc/iot",
 )
